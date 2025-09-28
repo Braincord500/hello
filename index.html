@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>전구 토글</title>
+  <style>
+    body { 
+      display:flex; align-items:center; justify-content:center; height:100vh; 
+      flex-direction:column; gap:20px; font-family: sans-serif; 
+    }
+    .bulb {
+      width:150px; height:150px; border-radius:50%; 
+      background:#222; display:flex; align-items:center; justify-content:center; 
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .bulb.on { 
+      background: radial-gradient(circle at 30% 20%, #fff9a8 0%, #ffd24d 20%, #ffb300 55%, #ff7a00 100%); 
+      box-shadow: 0 0 50px rgba(255,170,0,0.6); 
+    }
+    button { padding:10px 20px; font-size:16px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="bulb" id="bulb"></div>
+
+  <div>
+    <button id="toggleBtn">켜기/끄기</button>
+    <button id="resetBtn">초기화(꺼짐)</button>
+  </div>
+
+  <script>
+    const bulb = document.getElementById('bulb');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    let isOn = false;
+
+    function updateBulb() {
+      bulb.classList.toggle('on', isOn);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      isOn = !isOn;
+      updateBulb();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      isOn = false;
+      updateBulb();
+    });
+
+    updateBulb(); // 초기 상태
+  </script>
+</body>
+</html>
